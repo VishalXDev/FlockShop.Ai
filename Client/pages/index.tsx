@@ -28,7 +28,8 @@ const getEmojiForName = (name: string): string => {
   if (lower.includes("watch")) return "⌚";
   if (lower.includes("jewelry") || lower.includes("ring")) return "💍";
   if (lower.includes("furniture")) return "🛋️";
-  if (lower.includes("pet") || lower.includes("dog") || lower.includes("cat")) return "🐶";
+  if (lower.includes("pet") || lower.includes("dog") || lower.includes("cat"))
+    return "🐶";
   if (lower.includes("shoes")) return "👟";
   if (lower.includes("makeup")) return "💄";
   if (lower.includes("perfume")) return "🧴";
@@ -84,7 +85,9 @@ export default function Dashboard() {
 
   const fetchWishlists = async () => {
     try {
-      const res = await axios.get<Wishlist[]>("http://localhost:5000/api/wishlists");
+      const res = await axios.get<Wishlist[]>(
+        "http://localhost:5000/api/wishlists"
+      );
       setWishlists(res.data);
       setError("");
     } catch (err: any) {
@@ -108,8 +111,8 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen p-8 bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e]">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
-        <h1 className="text-2xl font-bold text-white">
-          Dream❤️ Wishlists🛒
+        <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-light via-gold to-gold-dark animate-shine">
+          Luxe✨ Wishlist Collection 🛍️
         </h1>
         <div className="flex gap-2">
           <AddWishlistModal onSuccess={fetchWishlists} />

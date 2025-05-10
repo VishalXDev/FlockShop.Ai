@@ -29,20 +29,20 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black to-slate-800">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-96">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black to-blue-900">
+      <div className="bg-white bg-opacity-90 p-8 rounded-xl shadow-lg w-96">
         <h1 className="text-2xl font-bold mb-4 text-center text-gray-800">Login</h1>
         <input
           type="email"
           placeholder="Email"
-          className="w-full border px-3 py-2 rounded mb-3"
+          className="w-full border px-3 py-2 rounded mb-3 text-black"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
           placeholder="Password"
-          className="w-full border px-3 py-2 rounded mb-4"
+          className="w-full border px-3 py-2 rounded mb-4 text-black"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
