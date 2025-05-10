@@ -28,8 +28,7 @@ const getEmojiForName = (name: string): string => {
   if (lower.includes("watch")) return "⌚";
   if (lower.includes("jewelry") || lower.includes("ring")) return "💍";
   if (lower.includes("furniture")) return "🛋️";
-  if (lower.includes("pet") || lower.includes("dog") || lower.includes("cat"))
-    return "🐶";
+  if (lower.includes("pet") || lower.includes("dog") || lower.includes("cat")) return "🐶";
   if (lower.includes("shoes")) return "👟";
   if (lower.includes("makeup")) return "💄";
   if (lower.includes("perfume")) return "🧴";
@@ -37,7 +36,6 @@ const getEmojiForName = (name: string): string => {
   if (lower.includes("music")) return "🎵";
   if (lower.includes("guitar")) return "🎸";
   if (lower.includes("drum")) return "🥁";
-  if (lower.includes("camera")) return "📸";
   if (lower.includes("movie")) return "🎬";
   if (lower.includes("ticket")) return "🎟️";
   if (lower.includes("sports")) return "🏅";
@@ -85,9 +83,10 @@ export default function Dashboard() {
 
   const fetchWishlists = async () => {
     try {
-      const res = await axios.get<Wishlist[]>(
-        "https://flockshop-ai.onrender.com"
-      );
+      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+      const res = await axios.get<Wishlist[]>(`${baseUrl}/api/wishlists`, {
+        withCredentials: true,
+      });
       setWishlists(res.data);
       setError("");
     } catch (err: any) {
