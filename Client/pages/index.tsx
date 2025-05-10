@@ -86,7 +86,7 @@ export default function Dashboard() {
   const fetchWishlists = async () => {
     try {
       const res = await axios.get<Wishlist[]>(
-        "http://localhost:5000/api/wishlists"
+        "https://flockshop-ai.onrender.com"
       );
       setWishlists(res.data);
       setError("");
