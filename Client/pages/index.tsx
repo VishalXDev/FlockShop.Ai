@@ -82,18 +82,24 @@ export default function Dashboard() {
   }, [loading, user]);
 
   const fetchWishlists = async () => {
-    try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-      const res = await axios.get<Wishlist[]>(`${baseUrl}/api/wishlists`, {
-        withCredentials: true,
-      });
-      setWishlists(res.data);
-      setError("");
-    } catch (err: any) {
-      console.error("Error fetching wishlists:", err.message);
-      setError("Failed to load wishlists.");
-    }
-  };
+  if (!user) return;
+
+  try {
+    const token = await user.getIdToken(); // Get Firebase token
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+    const res = await axios.get<Wishlist[]>(`${baseUrl}/api/wishlists`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    setWishlists(res.data);
+    setError("");
+  } catch (err: any) {
+    console.error("Error fetching wishlists:", err.response?.data || err.message);
+    setError("Failed to load wishlists.");
+  }
+};
+
 
   const handleDelete = (id: string) => {
     setWishlists((prev) => prev.filter((w) => w._id !== id));

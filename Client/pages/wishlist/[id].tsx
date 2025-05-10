@@ -25,7 +25,7 @@ export default function WishlistPage() {
   const fetchProducts = async () => {
     try {
       if (id) {
-        const res = await axios.get<Product[]>(`http://localhost:5000/api/products/${id}`);
+        const res = await axios.get<Product[]>(`https://flockshop-ai.onrender.com`);
         setProducts(res.data);
         setError("");
       }

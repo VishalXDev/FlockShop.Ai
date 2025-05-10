@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Wishlist = require("../models/Wishlist");
-
+const verifyToken = require("../middleware/verifyToken");
 // Get all wishlists
 router.get("/", async (req, res) => {
   try {
@@ -37,4 +37,12 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.get("/", verifyToken, async (req, res) => {
+  try {
+    const wishlists = await Wishlist.find({ createdBy: req.user.uid }); // Only their wishlists
+    res.json(wishlists);
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching wishlists" });
+  }
+});
 module.exports = router;
