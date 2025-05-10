@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Monospace;
+  background-color: #000;
+  color: #f9fafb;
+}
+
+input, button {
+  outline: 2px black;
+}
+
+/* Custom animation for RGB glow */
+@layer utilities {
+  @keyframes glow {
+    0%, 100% {
+      filter: hue-rotate(0deg);
+    }
+    50% {
+      filter: hue-rotate(180deg);
+    }
+  }
+
+  .animate-glow {
+    animation: glow 4s infinite linear;
+  }
+}
